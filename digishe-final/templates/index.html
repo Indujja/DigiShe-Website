@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="{{ current_lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiShe - Women's Government Schemes</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/?lang={{ current_lang }}">DigiShe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/?lang={{ current_lang }}">{{ translations.home }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/schemes?lang={{ current_lang }}">{{ translations.schemes }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">{{ translations.about }}</a>
+                    </li>
+                    <!--<li class="nav-item">
+                        <a class="nav-link" href="#contact">{{ translations.contact }}</a>
+                    </li>-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-globe me-1"></i>
+                            {% if current_lang == 'en' %}
+                                English
+                            {% else %}
+                                ಕನ್ನಡ
+                            {% endif %}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="langDropdown">
+                            <li><a class="dropdown-item {% if current_lang == 'en' %}active{% endif %}" href="?lang=en">English</a></li>
+                            <li><a class="dropdown-item {% if current_lang == 'kn' %}active{% endif %}" href="?lang=kn">ಕನ್ನಡ</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content animate-on-scroll">
+                        <h1>
+                            {% if current_lang == 'en' %}
+                                Empowering Women Through Government Schemes
+                            {% else %}
+                                ಸರ್ಕಾರಿ ಯೋಜನೆಗಳ ಮೂಲಕ ಮಹಿಳೆಯರ ಸಬಲೀಕರಣ
+                            {% endif %}
+                        </h1>
+                        <p>
+                            {% if current_lang == 'en' %}
+                                Discover government schemes designed to support and empower women across education, health, employment, and more.
+                            {% else %}
+                                ಶಿಕ್ಷಣ, ಆರೋಗ್ಯ, ಉದ್ಯೋಗ ಮತ್ತು ಇನ್ನೂ ಹೆಚ್ಚಿನ ವಿಷಯಗಳಲ್ಲಿ ಮಹಿಳೆಯರನ್ನು ಬೆಂಬಲಿಸಲು ಮತ್ತು ಸಬಲೀಕರಣಗೊಳಿಸಲು ವಿನ್ಯಾಸಗೊಳಿಸಲಾದ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ.
+                            {% endif %}
+                        </p>
+                        <form id="search-form" class="hero-search">
+                            <div class="input-group">
+                                <input type="text" id="search-input" class="form-control" placeholder="{{ translations.search_placeholder }}">
+                                <button class="btn" type="submit">
+                                    <i class="fas fa-search"></i> {{ translations.search_button }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image animate-on-scroll">
+                        <img src="{{ url_for('static', filename='img/confident-women-on-supporting-equality-free-vector.jpg') }}" alt="Women Empowerment">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>
+                    {% if current_lang == 'en' %}
+                        How DigiShe Helps
+                    {% else %}
+                        DigiShe ಹೇಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ
+                    {% endif %}
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>
+                            {% if current_lang == 'en' %}
+                                Easy Discovery
+                            {% else %}
+                                ಸುಲಭ ಪತ್ತೆ
+                            {% endif %}
+                        </h3>
+                        <p>
+                            {% if current_lang == 'en' %}
+                                Find relevant government schemes quickly through our easy-to-use search and filter system.
+                            {% else %}
+                                ನಮ್ಮ ಬಳಸಲು ಸುಲಭವಾದ ಹುಡುಕಾಟ ಮತ್ತು ಫಿಲ್ಟರ್ ವ್ಯವಸ್ಥೆಯ ಮೂಲಕ ಸಂಬಂಧಿತ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳನ್ನು ತ್ವರಿತವಾಗಿ ಪತ್ತೆಹಚ್ಚಿ.
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h3>
+                            {% if current_lang == 'en' %}
+                                Multilingual Support
+                            {% else %}
+                                ಬಹುಭಾಷಾ ಬೆಂಬಲ
+                            {% endif %}
+                        </h3>
+                        <p>
+                            {% if current_lang == 'en' %}
+                                Access information in English and Kannada to better serve diverse communities.
+                            {% else %}
+                                ವೈವಿಧ್ಯಮಯ ಸಮುದಾಯಗಳಿಗೆ ಉತ್ತಮವಾಗಿ ಸೇವೆ ಸಲ್ಲಿಸಲು ಇಂಗ್ಲಿಷ್ ಮತ್ತು ಕನ್ನಡದಲ್ಲಿ ಮಾಹಿತಿಯನ್ನು ಪಡೆಯಿರಿ.
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h3>
+                            {% if current_lang == 'en' %}
+                                Direct Access
+                            {% else %}
+                                ನೇರ ಪ್ರವೇಶ
+                            {% endif %}
+                        </h3>
+                        <p>
+                            {% if current_lang == 'en' %}
+                                Connect directly to official government websites for the most current information.
+                            {% else %}
+                                ಅತ್ಯಂತ ಪ್ರಸ್ತುತ ಮಾಹಿತಿಗಾಗಿ ನೇರವಾಗಿ ಅಧಿಕೃತ ಸರ್ಕಾರಿ ವೆಬ್‌ಸೈಟ್‌ಗಳಿಗೆ ಸಂಪರ್ಕಿಸಿ.
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content text-center animate-on-scroll">
+                <h2>
+                    {% if current_lang == 'en' %}
+                        Browse All Government Schemes
+                    {% else %}
+                        ಎಲ್ಲಾ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ
+                    {% endif %}
+                </h2>
+                <p>
+                    {% if current_lang == 'en' %}
+                        Explore our comprehensive directory of women-focused government initiatives.
+                    {% else %}
+                        ಮಹಿಳಾ ಕೇಂದ್ರಿತ ಸರ್ಕಾರಿ ಉಪಕ್ರಮಗಳ ನಮ್ಮ ಸಮಗ್ರ ಡೈರೆಕ್ಟರಿಯನ್ನು ಅನ್ವೇಷಿಸಿ.
+                    {% endif %}
+                </p>
+                <a href="/schemes?lang={{ current_lang }}" class="btn">
+                    {% if current_lang == 'en' %}
+                        View All Schemes
+                    {% else %}
+                        ಎಲ್ಲಾ ಯೋಜನೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-image animate-on-scroll">
+                        
+                        <img src="{{ url_for('static', filename='img/girlpower.jpg') }}" alt="About DigiShe">
+
+        
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content animate-on-scroll">
+                        <h3>
+                            {% if current_lang == 'en' %}
+                                About DigiShe
+                            {% else %}
+                                DigiShe ಬಗ್ಗೆ
+                            {% endif %}
+                        </h3>
+                        <p>
+                            {% if current_lang == 'en' %}
+                                DigiShe is a digital platform dedicated to making government schemes for women more accessible. We believe that information accessibility is the first step towards empowerment.
+                            {% else %}
+                                DigiShe ಮಹಿಳೆಯರಿಗೆ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳನ್ನು ಹೆಚ್ಚು ಲಭ್ಯವಾಗುವಂತೆ ಮಾಡಲು ಸಮರ್ಪಿತವಾದ ಡಿಜಿಟಲ್ ವೇದಿಕೆಯಾಗಿದೆ. ಮಾಹಿತಿ ಪ್ರವೇಶಾವಕಾಶವು ಸಬಲೀಕರಣದ ಮೊದಲ ಹೆಜ್ಜೆ ಎಂದು ನಾವು ನಂಬುತ್ತೇವೆ.
+                            {% endif %}
+                        </p>
+                        <p>
+                            {% if current_lang == 'en' %}
+                                Our mission is to bridge the information gap and ensure that every woman has the knowledge to access the benefits and resources available to her through various government initiatives.
+                            {% else %}
+                                ಮಾಹಿತಿಯ ಅಂತರವನ್ನು ಸೇತುವೆ ಮಾಡುವುದು ಮತ್ತು ಪ್ರತಿಯೊಬ್ಬ ಮಹಿಳೆಯು ವಿವಿಧ ಸರ್ಕಾರಿ ಉಪಕ್ರಮಗಳ ಮೂಲಕ ಅವಳಿಗೆ ಲಭ್ಯವಿರುವ ಪ್ರಯೋಜನಗಳು ಮತ್ತು ಸಂಪನ್ಮೂಲಗಳನ್ನು ಪ್ರವೇಶಿಸಲು ಜ್ಞಾನವನ್ನು ಹೊಂದಿದ್ದಾಳೆ ಎಂದು ಖಚಿತಪಡಿಸುವುದು ನಮ್ಮ ಮಿಷನ್ ಆಗಿದೆ.
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section 
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>
+                    {% if current_lang == 'en' %}
+                        Contact Us
+                    {% else %}
+                        ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ
+                    {% endif %}
+                </h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-form animate-on-scroll">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="{% if current_lang == 'en' %}Your Name{% else %}ನಿಮ್ಮ ಹೆಸರು{% endif %}">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" placeholder="{% if current_lang == 'en' %}Your Email{% else %}ನಿಮ್ಮ ಇಮೇಲ್{% endif %}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="{% if current_lang == 'en' %}Subject{% else %}ವಿಷಯ{% endif %}">
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="{% if current_lang == 'en' %}Your Message{% else %}ನಿಮ್ಮ ಸಂದೇಶ{% endif %}"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn">
+                                    {% if current_lang == 'en' %}
+                                        Send Message
+                                    {% else %}
+                                        ಸಂದೇಶ ಕಳುಹಿಸಿ
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-about">
+                        <div class="footer-logo">DigiShe</div>
+                        <p>{{ translations.footer_text }}</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-links">
+                        <h3>
+                            {% if current_lang == 'en' %}
+                                Quick Links
+                            {% else %}
+                                ತ್ವರಿತ ಲಿಂಕ್‌ಗಳು
+                            {% endif %}
+                        </h3>
+                        <ul class="list-unstyled">
+                            <li><a href="/?lang={{ current_lang }}">{{ translations.home }}</a></li>
+                            <li><a href="/schemes?lang={{ current_lang }}">{{ translations.schemes }}</a></li>
+                            <li><a href="/?lang={{ current_lang }}#about">{{ translations.about }}</a></li>
+                            <li><a href="/?lang={{ current_lang }}#contact">{{ translations.contact }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-links">
+                        <h3>
+                            {% if current_lang == 'en' %}
+                                Government Resources
+                            {% else %}
+                                ಸರ್ಕಾರಿ ಸಂಪನ್ಮೂಲಗಳು
+                            {% endif %}
+                        </h3>
+                        <ul class="list-unstyled">
+                            <li><a href="https://wcd.gov.in/" target="_blank">
+                                {% if current_lang == 'en' %}
+                                    Ministry of Women and Child Development
+                                {% else %}
+                                    ಮಹಿಳಾ ಮತ್ತು ಮಕ್ಕಳ ಅಭಿವೃದ್ಧಿ ಸಚಿವಾಲಯ
+                                {% endif %}
+                            </a></li>
+                            <li><a href="https://www.india.gov.in/" target="_blank">
+                                {% if current_lang == 'en' %}
+                                    National Portal of India
+                                {% else %}
+                                    ಭಾರತದ ರಾಷ್ಟ್ರೀಯ ಪೋರ್ಟಲ್
+                                {% endif %}
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 DigiShe - All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

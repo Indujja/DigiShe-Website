@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="{{ current_lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiShe - Women's Government Schemes</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/?lang={{ current_lang }}">DigiShe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/?lang={{ current_lang }}">{{ translations.home }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/schemes?lang={{ current_lang }}">{{ translations.schemes }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/?lang={{ current_lang }}#about">{{ translations.about }}</a>
+                    <!--</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/?lang={{ current_lang }}#contact">{{ translations.contact }}</a>
+                    </li>-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-globe me-1"></i>
+                            {% if current_lang == 'en' %}
+                                English
+                            {% else %}
+                                ಕನ್ನಡ
+                            {% endif %}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="langDropdown">
+                            <li><a class="dropdown-item {% if current_lang == 'en' %}active{% endif %}" href="?lang=en">English</a></li>
+                            <li><a class="dropdown-item {% if current_lang == 'kn' %}active{% endif %}" href="?lang=kn">ಕನ್ನಡ</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Bar -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-bar">
+                <div class="input-group">
+                    <input type="text" id="scheme-search" class="form-control" placeholder="{{ translations.search_placeholder }}" value="{{ search_query }}">
+                    <button class="btn search-btn" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Filters -->
+    <section class="category-section">
+        <div class="container">
+            <div class="category-filters mb-5">
+                <div class="row">
+                    <div class="col-12 text-center mb-4">
+                        <h3>
+                            {% if current_lang == 'en' %}
+                                Filter by Category
+                            {% else %}
+                                ವರ್ಗದ ಮೂಲಕ ಫಿಲ್ಟರ್ ಮಾಡಿ
+                            {% endif %}
+                        </h3>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="d-flex flex-wrap justify-content-center category-buttons">
+                            <button class="category-btn active" data-category="all">
+                                {% if current_lang == 'en' %}
+                                    All Schemes
+                                {% else %}
+                                    ಎಲ್ಲಾ ಯೋಜನೆಗಳು
+                                {% endif %}
+                            </button>
+                            <button class="category-btn" data-category="Education">
+                                {% if current_lang == 'en' %}
+                                    Education
+                                {% else %}
+                                    ಶಿಕ್ಷಣ
+                                {% endif %}
+                            </button>
+                            <button class="category-btn" data-category="Scholarship">
+                                {% if current_lang == 'en' %}
+                                    Scholarships
+                                {% else %}
+                                    ವಿದ್ಯಾರ್ಥಿ ವೇತನ
+                                {% endif %}
+                            </button>
+                            <button class="category-btn" data-category="Child Welfare">
+                                {% if current_lang == 'en' %}
+                                    Child Welfare
+                                {% else %}
+                                    ಮಕ್ಕಳ ಕಲ್ಯಾಣ
+                                {% endif %}
+                            </button>
+                            <button class="category-btn" data-category="Health">
+                                {% if current_lang == 'en' %}
+                                    Health
+                                {% else %}
+                                    ಆರೋಗ್ಯ
+                                {% endif %}
+                            </button>
+                            <button class="category-btn" data-category="Employment">
+                                {% if current_lang == 'en' %}
+                                    Employment
+                                {% else %}
+                                    ಉದ್ಯೋಗ
+                                {% endif %}
+                            </button>
+                            <button class="category-btn" data-category="Safety">
+                                {% if current_lang == 'en' %}
+                                    Safety
+                                {% else %}
+                                    ಸುರಕ್ಷತೆ
+                                {% endif %}
+                            </button>
+                            <button class="category-btn" data-category="General">
+                                {% if current_lang == 'en' %}
+                                    General
+                                {% else %}
+                                    ಸಾಮಾನ್ಯ
+                                {% endif %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schemes Listing -->
+    <section class="schemes-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>
+                    {% if current_lang == 'en' %}
+                        Available Schemes
+                    {% else %}
+                        ಲಭ್ಯವಿರುವ ಯೋಜನೆಗಳು
+                    {% endif %}
+                </h2>
+            </div>
+            
+            <div id="no-results" style="display: none;" class="text-center mb-5">
+                <h3>{{ translations.no_results }}</h3>
+            </div>
+            
+            <div class="row">
+                {% if schemes|length == 0 %}
+                    <div class="col-12 text-center">
+                        <h3>{{ translations.no_results }}</h3>
+                    </div>
+                {% else %}
+                    {% for scheme in schemes %}
+                        <div class="col-md-6 col-lg-4 scheme-item" data-category="{{ scheme.get('Category', 'General') }}">
+                            <div class="scheme-card">
+                                <div class="category-tag">{{ scheme.get('Category', 'General') }}</div>
+                                <h3>{{ scheme['Scheme Name'] }}</h3>
+                                <p>
+                                    {% if current_lang == 'en' %}
+                                        This is a government scheme designed for women's welfare and development.
+                                    {% else %}
+                                        ಇದು ಮಹಿಳೆಯರ ಕಲ್ಯಾಣ ಮತ್ತು ಅಭಿವೃದ್ಧಿಗಾಗಿ ವಿನ್ಯಾಸಗೊಳಿಸಲಾದ ಸರ್ಕಾರಿ ಯೋಜನೆಯಾಗಿದೆ.
+                                    {% endif %}
+                                </p>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <a href="{{ scheme['URL'] }}" target="_blank" class="btn">
+                                        <i class="fas fa-external-link-alt me-2"></i> {{ translations.visit_website }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-about">
+                        <div class="footer-logo">DigiShe</div>
+                        <p>{{ translations.footer_text }}</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-links">
+                        <h3>
+                            {% if current_lang == 'en' %}
+                                Quick Links
+                            {% else %}
+                                ತ್ವರಿತ ಲಿಂಕ್‌ಗಳು
+                            {% endif %}
+                        </h3>
+                        <ul class="list-unstyled">
+                            <li><a href="/?lang={{ current_lang }}">{{ translations.home }}</a></li>
+                            <li><a href="/schemes?lang={{ current_lang }}">{{ translations.schemes }}</a></li>
+                            <li><a href="/?lang={{ current_lang }}#about">{{ translations.about }}</a></li>
+                            <li><a href="/?lang={{ current_lang }}#contact">{{ translations.contact }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-links">
+                        <h3>
+                            {% if current_lang == 'en' %}
+                                Government Resources
+                            {% else %}
+                                ಸರ್ಕಾರಿ ಸಂಪನ್ಮೂಲಗಳು
+                            {% endif %}
+                        </h3>
+                        <ul class="list-unstyled">
+                            <li><a href="https://wcd.gov.in/" target="_blank">
+                                {% if current_lang == 'en' %}
+                                    Ministry of Women and Child Development
+                                {% else %}
+                                    ಮಹಿಳಾ ಮತ್ತು ಮಕ್ಕಳ ಅಭಿವೃದ್ಧಿ ಸಚಿವಾಲಯ
+                                {% endif %}
+                            </a></li>
+                            <li><a href="https://www.india.gov.in/" target="_blank">
+                                {% if current_lang == 'en' %}
+                                    National Portal of India
+                                {% else %}
+                                    ಭಾರತದ ರಾಷ್ಟ್ರೀಯ ಪೋರ್ಟಲ್
+                                {% endif %}
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 DigiShe - All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiShe - Empowering Women Digitally</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" href="DigiSheicon.jpg" type="image/png">
+    <style>
+        :root {
+            --primary: #8a2be2;
+            --secondary: #ff4a57;
+            --dark: #2d2d44;
+            --light: #f8f9fa;
+            --accent: #ffc107;
+            --gradient: linear-gradient(135deg, #8a2be2 0%, #ff4a57 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--dark);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 10px 5%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .language-switch {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .language-switch select {
+            padding: 8px 15px;
+            border-radius: 30px;
+            border: 1px solid #ddd;
+            background: white;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .language-switch select:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(45, 45, 68, 0.7), rgba(45, 45, 68, 0.7)), 
+                        url('https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+        }
+        
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.6);
+        }
+        
+        .hero-btn.secondary {
+            background: transparent;
+            border: 2px solid white;
+            box-shadow: none;
+        }
+        
+        .hero-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Problem Statement Section */
+        .problem-section {
+            padding: 100px 5%;
+            background: white;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 25%;
+            border-radius: 2px;
+        }
+        
+        .problem-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .problem-text {
+            flex: 1;
+        }
+        
+        .problem-image {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .problem-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .problem-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Objectives Section */
+        .objectives-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ece9e6 100%);
+        }
+        
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .objective-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .objective-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .objective-card:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .objective-card i {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .objective-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 100px 5%;
+            background: white;
+        }
+        
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            flex: 1 1 300px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ece9e6 100%);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        /* Success Stories Section */
+        .stories-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ece9e6 100%);
+        }
+        
+        .stories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .story-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .story-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .story-card:hover .story-image img {
+            transform: scale(1.1);
+        }
+        
+        .story-content {
+            padding: 25px;
+        }
+        
+        .story-content h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .story-content p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .story-meta {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .story-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .story-author {
+            font-weight: 600;
+        }
+        
+        /* Government Schemes Section */
+        .schemes-section {
+            padding: 100px 5%;
+            background: white;
+        }
+        
+        .schemes-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .schemes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .scheme-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ece9e6 100%);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .scheme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .scheme-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .scheme-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .scheme-card p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .scheme-link {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .scheme-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        /* Community Engagement Section */
+        .community-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, #8a2be2 0%, #ff4a57 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .community-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .community-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .community-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .community-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: white;
+            color: var(--primary);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .community-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: var(--light);
+        }
+        
+        .community-members {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .member-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin: 0 -10px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 5% 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--gradient);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-links h3:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: var(--gradient);
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-newsletter input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 30px;
+            border: none;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .footer-newsletter button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .footer-newsletter button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+        
+        /* Chatbot */
+        .chatbot-toggler {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-toggler:hover {
+            transform: scale(1.1);
+        }
+        
+        .chatbot-toggler i {
+            font-size: 1.5rem;
+        }
+        
+        .chatbot-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transform: scale(0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .chatbot-container.active {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .chatbot-header {
+            background: var(--gradient);
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .chatbot-header h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        
+        .close-chatbot {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .chatbot-messages {
+            height: 300px;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        
+        .chatbot-message {
+            margin-bottom: 15px;
+            display: flex;
+        }
+        
+        .chatbot-message.bot {
+            justify-content: flex-start;
+        }
+        
+        .chatbot-message.user {
+            justify-content: flex-end;
+        }
+        
+        .message-content {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+        }
+        
+        .bot .message-content {
+            background: #f1f1f1;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user .message-content {
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .chatbot-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-input button:hover {
+            background: var(--secondary);
+        }
+        
+        /* Language Toggle */
+        .hidden {
+            display: none;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .problem-content {
+                flex-direction: column;
+            }
+            
+            .problem-image {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .chatbot-container {
+                width: 90%;
+                right: 5%;
+            }
+            
+            .community-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <i class="fas fa-female"></i>DigiShe
+        </div>
+        <nav class="nav-links">
+            <a href="#home" class="en">Home</a>
+            <a href="#home" class="kn hidden">ಮುಖಪುಟ</a>
+            <a href="#problem" class="en">Problem</a>
+            <a href="#problem" class="kn hidden">ಸಮಸ್ಯೆ</a>
+            <a href="#objectives" class="en">Objectives</a>
+            <a href="#objectives" class="kn hidden">ಉದ್ದೇಶಗಳು</a>
+            <a href="#features" class="en">Features</a>
+            <a href="#features" class="kn hidden">ವೈಶಿಷ್ಟ್ಯಗಳು</a>
+            <a href="#schemes" class="en">Schemes</a>
+            <a href="#schemes" class="kn hidden">ಯೋಜನೆಗಳು</a>
+            <a href="#stories" class="en">Success Stories</a>
+            <a href="#stories" class="kn hidden">ಯಶಸ್ಸಿನ ಕಥೆಗಳು</a>
+            <a href="#contact" class="en">Contact</a>
+            <a href="#contact" class="kn hidden">ಸಂಪರ್ಕಿಸಿ</a>
+        </nav>
+        <div class="language-switch">
+            <select id="language" onchange="switchLanguage()">
+                <option value="en">English</option>
+                <option value="kn">ಕನ್ನಡ</option>
+            </select>
+        </div>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="en">Empowering Women Through Digital Inclusion</h1>
+            <h1 class="kn hidden">ಡಿಜಿಟಲ್ ಸೇರ್ಪಡೆಯ ಮೂಲಕ ಮಹಿಳೆಯರನ್ನು ಸಶಕ್ತೀಕರಿಸುವುದು</h1>
+            <p class="en">Bridging the digital divide and fostering economic independence for women across India.</p>
+            <p class="kn hidden">ಭಾರತದಾದ್ಯಂತ ಮಹಿಳೆಯರಿಗೆ ಡಿಜಿಟಲ್ ವಿಭಜನೆಯನ್ನು ದಾಟಲು ಮತ್ತು ಆರ್ಥಿಕ ಸ್ವಾತಂತ್ರ್ಯವನ್ನು ಬೆಳೆಸಲು.</p>
+            <div class="hero-btns">
+                <a href="#features" class="hero-btn en">Explore Features</a>
+                <a href="#features" class="hero-btn kn hidden">ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಅನ್ವೇಷಿಸಿ</a>
+                <a href="http://10.100.22.88:5000" class="hero-btn en">Government Schemes</a>
+                <a href="#contact" class="hero-btn secondary en">Contact Us</a>
+                <a href="#contact" class="hero-btn secondary kn hidden">ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Problem Statement Section -->
+    <section class="problem-section" id="problem">
+        <div class="section-title">
+            <h2 class="en">The Problem We're Solving</h2>
+            <h2 class="kn hidden">ನಾವು ಪರಿಹರಿಸುತ್ತಿರುವ ಸಮಸ್ಯೆ</h2>
+        </div>
+        <div class="problem-content">
+            <div class="problem-text">
+                <p class="en">Despite the growth of digital technology, millions of women worldwide lack internet access due to socio-cultural and economic barriers. Skilled women unable to work outside their homes also lack platforms for remote opportunities.</p>
+                <p class="kn hidden">ಡಿಜಿಟಲ್ ತಂತ್ರಜ್ಞಾನದ ಬೆಳವಣಿಗೆಯ ಹೊರತಾಗಿಯೂ, ಸಾಮಾಜಿಕ-ಸಾಂಸ್ಕೃತಿಕ ಮತ್ತು ಆರ್ಥಿಕ ಅಡೆತಡೆಗಳಿಂದಾಗಿ ಪ್ರಪಂಚದ ಲಕ್ಷಾಂತರ ಮಹಿಳೆಯರು ಇಂಟರ್ನೆಟ್ ಪ್ರವೇಶವನ್ನು ಹೊಂದಿಲ್ಲ. ತಮ್ಮ ಮನೆಗಳ ಹೊರಗೆ ಕೆಲಸ ಮಾಡಲು ಸಾಧ್ಯವಾಗದ ನುರಿತ ಮಹಿಳೆಯರು ದೂರಸ್ಥ ಅವಕಾಶಗಳಿಗೆ ವೇದಿಕೆಗಳನ್ನು ಸಹ ಹೊಂದಿಲ್ಲ.</p>
+                <p class="en">The challenge is to develop an innovative solution that enhances internet accessibility, promotes digital literacy, and empowers women with remote work opportunities, helping bridge the digital divide and drive economic inclusion.</p>
+                <p class="kn hidden">ಇಂಟರ್ನೆಟ್ ಪ್ರವೇಶವನ್ನು ಹೆಚ್ಚಿಸುವ, ಡಿಜಿಟಲ್ ಸಾಕ್ಷರತೆಯನ್ನು ಉತ್ತೇಜಿಸುವ ಮತ್ತು ಮಹಿಳೆಯರಿಗೆ ದೂರಸ್ಥ ಕೆಲಸದ ಅವಕಾಶಗಳೊಂದಿಗೆ ಸಶಕ್ತೀಕರಿಸುವ ನಾವೀನ್ಯತೆಯ ಪರಿಹಾರವನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸುವುದು ಸವಾಲಾಗಿದೆ, ಇದು ಡಿಜಿಟಲ್ ವಿಭಜನೆಯನ್ನು ದಾಟಲು ಮತ್ತು ಆರ್ಥಿಕ ಸೇರ್ಪಡೆಯನ್ನು ಚಾಲನೆ ಮಾಡಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ.</p>
+            </div>
+            <div class="problem-image">
+                <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Women facing digital divide">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Objectives Section -->
+    <section class="objectives-section" id="objectives">
+        <div class="section-title">
+            <h2 class="en">Our Objectives</h2>
+            <h2 class="kn hidden">ನಮ್ಮ ಉದ್ದೇಶಗಳು</h2>
+        </div>
+        <div class="objectives-grid">
+            <div class="objective-card">
+                <i class="fas fa-wifi"></i>
+                <h3 class="en">Increase Internet Accessibility</h3>
+                <h3 class="kn hidden">ಇಂಟರ್ನೆಟ್ ಪ್ರವೇಶವನ್ನು ಹೆಚ್ಚಿಸಿ</h3>
+                <p class="en">Develop solutions that enable more women to access and use the internet, reducing the gender gap in digital connectivity.</p>
+                <p class="kn hidden">ಹೆಚ್ಚಿನ ಮಹಿಳೆಯರು ಇಂಟರ್ನೆಟ್ ಅನ್ನು ಪ್ರವೇಶಿಸಲು ಮತ್ತು ಬಳಸಲು ಅನುವು ಮಾಡಿಕೊಡುವ ಪರಿಹಾರಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸಿ, ಡಿಜಿಟಲ್ ಸಂಪರ್ಕದಲ್ಲಿನ ಲಿಂಗ ಅಂತರವನ್ನು ಕಡಿಮೆ ಮಾಡಿ.</p>
+            </div>
+            <div class="objective-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3 class="en">Digital Literacy</h3>
+                <h3 class="kn hidden">ಡಿಜಿಟಲ್ ಸಾಕ್ಷರತೆ</h3>
+                <p class="en">Create platforms that educate women on using the internet effectively for learning, communication, and career growth.</p>
+                <p class="kn hidden">ಕಲಿಕೆ, ಸಂವಹನ ಮತ್ತು ವೃತ್ತಿ ಬೆಳವಣಿಗೆಗಾಗಿ ಇಂಟರ್ನೆಟ್ ಅನ್ನು ಪರಿಣಾಮಕಾರಿಯಾಗಿ ಬಳಸುವ ಬಗ್ಗೆ ಮಹಿಳೆಯರಿಗೆ ಶಿಕ್ಷಣ ನೀಡುವ ವೇದಿಕೆಗಳನ್ನು ರಚಿಸಿ.</p>
+            </div>
+            <div class="objective-card">
+                <i class="fas fa-briefcase"></i>
+                <h3 class="en">Remote Work Opportunities</h3>
+                <h3 class="kn hidden">ದೂರಸ್ಥ ಕೆಲಸದ ಅವಕಾಶಗಳು</h3>
+                <p class="en">Develop solutions that help skilled women work from home, contribute economically, and gain financial independence.</p>
+                <p class="kn hidden">ನುರಿತ ಮಹಿಳೆಯರು ಮನೆಯಿಂದ ಕೆಲಸ ಮಾಡಲು, ಆರ್ಥಿಕವಾಗಿ ಕೊಡುಗೆ ನೀಡಲು ಮತ್ತು ಹಣಕಾಸು ಸ್ವಾತಂತ್ರ್ಯವನ್ನು ಪಡೆಯಲು ಸಹಾಯ ಮಾಡುವ ಪರಿಹಾರಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸಿ.</p>
+            </div>
+            <div class="objective-card">
+                <i class="fas fa-hands-helping"></i>
+                <h3 class="en">Community Support</h3>
+                <h3 class="kn hidden">ಸಮುದಾಯ ಬೆಂಬಲ</h3>
+                <p class="en">Develop platforms that allow women to connect, collaborate, and share resources to uplift one another.</p>
+                <p class="kn hidden">ಮಹಿಳೆಯರು ಪರಸ್ಪರ ಸಂಪರ್ಕಿಸಲು, ಸಹಯೋಗ ಮಾಡಲು ಮತ್ತು ಸಂಪನ್ಮೂಲಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಅನುವು ಮಾಡಿಕೊಡುವ ವೇದಿಕೆಗಳನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸಿ.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="section-title">
+            <h2 class="en">Key Features</h2>
+            <h2 class="kn hidden">ಪ್ರಮುಖ ವೈಶಿಷ್ಟ್ಯಗಳು</h2>
+        </div>
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3 class="en">Government Schemes</h3>
+                <h3 class="kn hidden">ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು</h3>
+                <p class="en">Access information about various government schemes designed to empower women economically and digitally.</p>
+                <p class="kn hidden">ಮಹಿಳೆಯರನ್ನು ಆರ್ಥಿಕವಾಗಿ ಮತ್ತು ಡಿಜಿಟಲ್ ರೀತಿಯಲ್ಲಿ ಸಶಕ್ತೀಕರಿಸಲು ವಿನ್ಯಾಸಗೊಳಿಸಲಾದ ವಿವಿಧ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳ ಬಗ್ಗೆ ಮಾಹಿತಿಯನ್ನು ಪ್ರವೇಶಿಸಿ.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3 class="en">Self-Employment</h3>
+                <h3 class="kn hidden">ಸ್ವಯಂ ಉದ್ಯೋಗ</h3>
+                <p class="en">Discover opportunities for self-employment and remote work that can be done from the comfort of your home.</p>
+                <p class="kn hidden">ನಿಮ್ಮ ಮನೆಯ ಸೌಕರ್ಯದಿಂದಲೇ ಮಾಡಬಹುದಾದ ಸ್ವಯಂ ಉದ್ಯೋಗ ಮತ್ತು ದೂರಸ್ಥ ಕೆಲಸದ ಅವಕಾಶಗಳನ್ನು ಅನ್ವೇಷಿಸಿ.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3 class="en">AI Assistant</h3>
+                <h3 class="kn hidden">AI ಸಹಾಯಕ</h3>
+                <p class="en">Get instant help from our friendly chatbot that can guide you through the platform and answer your questions.</p>
+                <p class="kn hidden">ವೇದಿಕೆಯ ಮೂಲಕ ನಿಮ್ಮನ್ನು ಮಾರ್ಗದರ್ಶನ ಮಾಡಲು ಮತ್ತು ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಲು ಸಾಧ್ಯವಾಗುವ ನಮ್ಮ ಸ್ನೇಹಪರ ಚಾಟ್ಬಾಟ್ನಿಂದ ತ್ವರಿತ ಸಹಾಯವನ್ನು ಪಡೆಯಿರಿ.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="en">Mobile Friendly</h3>
+                <h3 class="kn hidden">ಮೊಬೈಲ್ ಸ್ನೇಹಿ</h3>
+                <p class="en">Designed specifically for mobile users with minimal digital experience, ensuring easy navigation for everyone.</p>
+                <p class="kn hidden">ಕನಿಷ್ಠ ಡಿಜಿಟಲ್ ಅನುಭವವನ್ನು ಹೊಂದಿರುವ ಮೊಬೈಲ್ ಬಳಕೆದಾರರಿಗಾಗಿ ವಿಶೇಷವಾಗಿ ವಿನ್ಯಾಸಗೊಳಿಸಲಾಗಿದೆ, ಎಲ್ಲರಿಗೂ ಸುಲಭ ನ್ಯಾವಿಗೇಷನ್ ಅನ್ನು ಖಚಿತಪಡಿಸುತ್ತದೆ.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="schemes-section" id="govschemes">
+        <a href="http://10.100.22.88:5000">Go to Homepage</a>
+    </section>
+
+     <!-- Government Schemes Section -->
+     <section class="schemes-section" id="schemes">
+        <div class="section-title">
+            <h2 class="en">Government Schemes</h2>
+            <h2 class="kn hidden">ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು</h2>
+        </div>
+        <div class="schemes-container">
+            <div class="schemes-grid">
+                <div class="scheme-card">
+                    <i class="fas fa-rupee-sign scheme-icon"></i>
+                    <h3 class="en">Stand-Up India</h3>
+                    <h3 class="kn hidden">ಸ್ಟ್ಯಾಂಡ್-ಅಪ್ ಇಂಡಿಯಾ</h3>
+                    <p class="en">Facilitating bank loans between ₹10 lakh and ₹1 crore to at least one Scheduled Caste (SC) or Scheduled Tribe (ST) borrower and at least one woman borrower per bank branch.</p>
+                    <p class="kn hidden">ಪ್ರತಿ ಬ್ಯಾಂಕ್ ಶಾಖೆಗೆ ಕನಿಷ್ಠ ಒಬ್ಬರು ಷೆಡ್ಯೂಲ್ಡ್ ಕ್ಯಾಸ್ಟ್ (SC) ಅಥವಾ ಷೆಡ್ಯೂಲ್ಡ್ ಟ್ರೈಬ್ (ST) ಸಾಲಗಾರ ಮತ್ತು ಕನಿಷ್ಠ ಒಬ್ಬ ಮಹಿಳಾ ಸಾಲಗಾರರಿಗೆ ₹10 ಲಕ್ಷದಿಂದ ₹1 ಕೋಟಿ ನಡುವಿನ ಬ್ಯಾಂಕ್ ಸಾಲಗಳನ್ನು ಸುಗಮಗೊಳಿಸುವುದು.</p>
+                    
+                </div>
+                <div class="scheme-card">
+                    <i class="fas fa-graduation-cap scheme-icon"></i>
+                    <h3 class="en">Mahila E-Haat</h3>
+                    <h3 class="kn hidden">ಮಹಿಳಾ ಇ-ಹಾಟ್</h3>
+                    <p class="en">A direct online marketing platform for women entrepreneurs to sell their products to buyers across the country.</p>
+                    <p class="kn hidden">ಮಹಿಳಾ ಉದ್ಯಮಿಗಳು ತಮ್ಮ ಉತ್ಪನ್ನಗಳನ್ನು ದೇಶದಾದ್ಯಂತದ ಖರೀದಿದಾರರಿಗೆ ಮಾರಾಟ ಮಾಡಲು ನೇರ ಆನ್ಲೈನ್ ಮಾರ್ಕೆಟಿಂಗ್ ವೇದಿಕೆ.</p>
+                    
+                </div>
+                <div class="scheme-card">
+                    <i class="fas fa-laptop scheme-icon"></i>
+                    <h3 class="en">Digital Saksharta Abhiyan</h3>
+                    <h3 class="kn hidden">ಡಿಜಿಟಲ್ ಸಾಕ್ಷರತಾ ಅಭಿಯಾನ</h3>
+                    <p class="en">Digital literacy program aimed at empowering rural women with basic digital skills and knowledge.</p>
+                    <p class="kn hidden">ಗ್ರಾಮೀಣ ಮಹಿಳೆಯರಿಗೆ ಮೂಲ ಡಿಜಿಟಲ್ ಕೌಶಲ್ಯ ಮತ್ತು ಜ್ಞಾನವನ್ನು ನೀಡುವ ಡಿಜಿಟಲ್ ಸಾಕ್ಷರತಾ ಕಾರ್ಯಕ್ರಮ.</p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section class="stories-section" id="stories">
+        <div class="section-title">
+            <h2 class="en">Success Stories</h2>
+            <h2 class="kn hidden">ಯಶಸ್ಸಿನ ಕಥೆಗಳು</h2>
+        </div>
+        <div class="stories-container">
+            <div class="story-card">
+                <div class="story-image">
+                    <img src="picklelady.jpg" alt="happy rural women standing with a pickle container in hand " >
+                </div>
+                <div class="story-content">
+                    <h3 class="en">From Homemaker to Entrepreneur</h3>
+                    <h3 class="kn hidden">ಗೃಹಿಣಿಯಿಂದ ಉದ್ಯಮಿಗೆ</h3>
+                    <p class="en">Priya started her homemade pickle business through DigiShe and now earns ₹25,000 per month while working from home.</p>
+                    <p class="kn hidden">ಪ್ರಿಯಾ ಡಿಜಿಶೇ ಮೂಲಕ ತನ್ನ ಮನೆಮಾಡಿದ ಉಪ್ಪಿನಕಾಯಿ ವ್ಯವಹಾರವನ್ನು ಪ್ರಾರಂಭಿಸಿದರು ಮತ್ತು ಈಗ ಮನೆಯಿಂದ ಕೆಲಸ ಮಾಡುತ್ತಾ ತಿಂಗಳಿಗೆ ₹25,000 ಸಂಪಾದಿಸುತ್ತಿದ್ದಾರೆ.</p>
+                    <div class="story-meta">
+                        <div class="story-avatar">P</div>
+                        <div class="story-author">Priya M.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="story-card">
+                <div class="story-image">
+                    <img src="lakshmi.jpg" alt="Happy Lakshmi" >
+                </div>
+                <div class="story-content">
+                    <h3 class="en">Digital Literacy Changed My Life</h3>
+                    <h3 class="kn hidden">ಡಿಜಿಟಲ್ ಸಾಕ್ಷರತೆ ನನ್ನ ಜೀವನವನ್ನು ಬದಲಾಯಿಸಿತು</h3>
+                    <p class="en">Lakshmi learned digital skills through our platform and now works as a virtual assistant earning ₹18,000 monthly.</p>
+                    <p class="kn hidden">ಲಕ್ಷ್ಮಿ ನಮ್ಮ ವೇದಿಕೆಯ ಮೂಲಕ ಡಿಜಿಟಲ್ ಕೌಶಲ್ಯಗಳನ್ನು ಕಲಿತರು ಮತ್ತು ಈಗ ವರ್ಚುವಲ್ ಸಹಾಯಕರಾಗಿ ತಿಂಗಳಿಗೆ ₹18,000 ಸಂಪಾದಿಸುತ್ತಿದ್ದಾರೆ.</p>
+                    <div class="story-meta">
+                        <div class="story-avatar">L</div>
+                        <div class="story-author">Lakshmi K.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="story-card">
+                <div class="story-image">
+                    <img src="tailorwoman.jpg" alt="woman with tailor business" >
+                </div>
+                <div class="story-content">
+                    <h3 class="en">Empowered Through Government Schemes</h3>
+                    <h3 class="kn hidden">ಸರ್ಕಾರಿ ಯೋಜನೆಗಳ ಮೂಲಕ ಸಶಕ್ತೀಕರಣ</h3>
+                    <p class="en">Sunita utilized the Stand-Up India loan to start her tailoring business and now employs 5 other women from her village.</p>
+                    <p class="kn hidden">ಸುನೀತಾ ಸ್ಟ್ಯಾಂಡ್-ಅಪ್ ಇಂಡಿಯಾ ಸಾಲವನ್ನು ಬಳಸಿಕೊಂಡು ತನ್ನ ಹೊಲಿಗೆ ವ್ಯವಹಾರವನ್ನು ಪ್ರಾರಂಭಿಸಿದರು ಮತ್ತು ಈಗ ತನ್ನ ಗ್ರಾಮದ 5 ಇತರ ಮಹಿಳೆಯರನ್ನು ನೇಮಕ ಮಾಡಿಕೊಂಡಿದ್ದಾರೆ.</p>
+                    <div class="story-meta">
+                        <div class="story-avatar">S</div>
+                        <div class="story-author">Sunita R.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Engagement Section -->
+    <section class="community-section">
+        <div class="section-title">
+            <h2 class="en">Join Our Community</h2>
+            <h2 class="kn hidden">ನಮ್ಮ ಸಮುದಾಯವನ್ನು ಸೇರಿಕೊಳ್ಳಿ</h2>
+        </div>
+        <div class="community-container">
+            <div class="community-content">
+                <div class="community-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="en">Connect with Like-Minded Women</h3>
+                <h3 class="kn hidden">ಒಂದೇ ರೀತಿಯ ಆಲೋಚನೆ ಹೊಂದಿರುವ ಮಹಿಳೆಯರೊಂದಿಗೆ ಸಂಪರ್ಕಿಸಿ</h3>
+                <p class="en">Join our growing WhatsApp community to share experiences, ask questions, and find support from women across India who are on the same digital empowerment journey.</p>
+                <p class="kn hidden">ಅನುಭವಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು, ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳಲು ಮತ್ತು ಭಾರತದಾದ್ಯಂತದ ಅದೇ ಡಿಜಿಟಲ್ ಸಶಕ್ತೀಕರಣ ಪ್ರಯಾಣದಲ್ಲಿರುವ ಮಹಿಳೆಯರಿಂದ ಬೆಂಬಲವನ್ನು ಕಂಡುಹಿಡಿಯಲು ನಮ್ಮ ಬೆಳೆಯುತ್ತಿರುವ WhatsApp ಸಮುದಾಯವನ್ನು ಸೇರಿಕೊಳ್ಳಿ.</p>
+                <a href="https://chat.whatsapp.com/J1QtTh3P216Epgk72WHVMT" class="community-btn en" target="_blank">Join Now</a>
+                <a href="https://chat.whatsapp.com/J1QtTh3P216Epgk72WHVMT" class="community-btn kn hidden" target="_blank">ಈಗ ಸೇರಿಕೊಳ್ಳಿ</a>
+                
+                <div class="community-members">
+                    <div class="member-avatar">P</div>
+                    <div class="member-avatar">L</div>
+                    <div class="member-avatar">S</div>
+                    <div class="member-avatar">M</div>
+                    <div class="member-avatar">+500</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <i class="fas fa-female"></i>DigiShe
+                </div>
+                <p class="en">Empowering women through digital inclusion and economic opportunities.</p>
+                <p class="kn hidden">ಡಿಜಿಟಲ್ ಸೇರ್ಪಡೆ ಮತ್ತು ಆರ್ಥಿಕ ಅವಕಾಶಗಳ ಮೂಲಕ ಮಹಿಳೆಯರನ್ನು ಸಶಕ್ತೀಕರಿಸುವುದು.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3 class="en">Quick Links</h3>
+                <h3 class="kn hidden">ತ್ವರಿತ ಲಿಂಕ್ಗಳು</h3>
+                <ul>
+                    <li><a href="#home" class="en">Home</a><a href="#home" class="kn hidden">ಮುಖಪುಟ</a></li>
+                    <li><a href="#problem" class="en">Problem</a><a href="#problem" class="kn hidden">ಸಮಸ್ಯೆ</a></li>
+                    <li><a href="#objectives" class="en">Objectives</a><a href="#objectives" class="kn hidden">ಉದ್ದೇಶಗಳು</a></li>
+                    <li><a href="#features" class="en">Features</a><a href="#features" class="kn hidden">ವೈಶಿಷ್ಟ್ಯಗಳು</a></li>
+                    <li><a href="#schemes" class="en">Schemes</a><a href="#schemes" class="kn hidden">ಯೋಜನೆಗಳು</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3 class="en">Resources</h3>
+                <h3 class="kn hidden">ಸಂಪನ್ಮೂಲಗಳು</h3>
+                <ul>
+                    <li><a href="#schemes" class="en">Government Schemes</a><a href="#schemes" class="kn hidden">ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು</a></li>
+                    <li><a href="#" class="en">Self-Employment</a><a href="#" class="kn hidden">ಸ್ವಯಂ ಉದ್ಯೋಗ</a></li>
+                    <li><a href="#" class="en">Digital Literacy</a><a href="#" class="kn hidden">ಡಿಜಿಟಲ್ ಸಾಕ್ಷರತೆ</a></li>
+                    <li><a href="https://chat.whatsapp.com/J1QtTh3P216Epgk72WHVMT" class="en">Community Support</a><a href="https://chat.whatsapp.com/J1QtTh3P216Epgk72WHVMT" class="kn hidden">ಸಮುದಾಯ ಬೆಂಬಲ</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3 class="en">Contact Us</h3>
+                <h3 class="kn hidden">ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ</h3>
+                <p class="en">Have questions? Reach out to our team.</p>
+                <p class="kn hidden">ಪ್ರಶ್ನೆಗಳಿವೆಯೇ? ನಮ್ಮ ತಂಡವನ್ನು ಸಂಪರ್ಕಿಸಿ.</p>
+                <input type="email" placeholder="Your Email" class="en">
+                <input type="email" placeholder="ನಿಮ್ಮ ಇಮೇಲ್" class="kn hidden">
+                <button class="en">Send Message</button>
+                <button class="kn hidden">ಸಂದೇಶ ಕಳುಹಿಸಿ</button>
+            </div>
+        </div>
+        <div class="copyright">
+            <p class="en">© 2025 DigiShe. All rights reserved.</p>
+            <p class="kn hidden">© 2025 ಡಿಜಿಶೇ. ಎಲ್ಲ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.</p>
+        </div>
+    </footer>
+    
+    <!-- Chatbot -->
+    <div class="chatbot-toggler" onclick="toggleChatbot()">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+
+    <!-- Chatbot Window -->
+    <div class="chatbot-container" id="chatbot">
+        <div class="chatbot-header">
+            <h3>DigiShe Assistant</h3>
+            <button class="close-chatbot" onclick="toggleChatbot()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages"></div>
+        <div class="chatbot-input">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="kn">Kannada</option>
+                <option value="ta">Tamil</option>
+                <option value="te">Telugu</option>
+                <option value="bn">Bengali</option>
+            </select>
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function toggleChatbot() {
+            document.getElementById('chatbot').classList.toggle('active');
+        }
+
+        async function sendMessage() {
+            const inputField = document.getElementById('user-input');
+            const language = document.getElementById('language-select').value;
+            const message = inputField.value.trim();
+            if (!message) return;
+            
+            const messagesContainer = document.getElementById('chatbot-messages');
+            messagesContainer.innerHTML += `<div class='chatbot-message user'><div class='message-content'>(${language}) ${message}</div></div>`;
+            inputField.value = '';
+
+            const response = await fetch('/get', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `msg=${encodeURIComponent(message)}&lang=${encodeURIComponent(language)}`
+            });
+            const text = await response.text();
+            messagesContainer.innerHTML += `<div class='chatbot-message bot'><div class='message-content'>${text}</div></div>`;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+    </script>
+    
+    <!--<div class="chatbot-toggler" onclick="toggleChatbot()">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+    
+    <div class="chatbot-container" id="chatbot">
+        <div class="chatbot-header">
+            <h3 class="en">DigiShe Assistant</h3>
+            <h3 class="kn hidden">ಡಿಜಿಶೇ ಸಹಾಯಕ</h3>
+            <button class="close-chatbot" onclick="toggleChatbot()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chatbot-message bot">
+                <div class="message-content en">
+                    Hello! I'm your DigiShe assistant. How can I help you today?
+                </div>
+                <div class="message-content kn hidden">
+                    ನಮಸ್ಕಾರ! ನಾನು ನಿಮ್ಮ ಡಿಜಿಶೇ ಸಹಾಯಕ. ಇಂದು ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಲ್ಲೆ?
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" placeholder="Type your message..." class="en" id="user-input">
+            <input type="text" placeholder="ನಿಮ್ಮ ಸಂದೇಶವನ್ನು ಟೈಪ್ ಮಾಡಿ..." class="kn hidden" id="user-input-kn">
+            <button onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    
+    <script>-->
+        <script>
+        // Language Toggle
+        function switchLanguage() {
+            let lang = document.getElementById('language').value;
+            document.querySelectorAll('.en').forEach(el => el.classList.toggle('hidden', lang !== 'en'));
+            document.querySelectorAll('.kn').forEach(el => el.classList.toggle('hidden', lang !== 'kn'));
+        }
+        
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Chatbot Toggle
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            chatbot.classList.toggle('active');
+        }
+        
+        // Chatbot Functionality
+        function sendMessage() {
+            const lang = document.getElementById('language').value;
+            const inputField = lang === 'en' ? document.getElementById('user-input') : document.getElementById('user-input-kn');
+            const message = inputField.value.trim();
+            
+            if (message) {
+                // Add user message
+                const messagesContainer = document.getElementById('chatbot-messages');
+                const userMessage = document.createElement('div');
+                userMessage.className = 'chatbot-message user';
+                userMessage.innerHTML = `<div class="message-content">${message}</div>`;
+                messagesContainer.appendChild(userMessage);
+                
+                // Clear input
+                inputField.value = '';
+                
+                // Scroll to bottom
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                // Simulate bot response after a delay
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'chatbot-message bot';
+                    
+                    let response = '';
+                    if (lang === 'en') {
+                        response = "Thank you for your message! Our team will get back to you soon with more information. In the meantime, you can explore our resources on government schemes and self-employment opportunities or join our WhatsApp community for immediate support.";
+                    } else {
+                        response = "ನಿಮ್ಮ ಸಂದೇಶಕ್ಕೆ ಧನ್ಯವಾದಗಳು! ನಮ್ಮ ತಂಡವು ಹೆಚ್ಚಿನ ಮಾಹಿತಿಯೊಂದಿಗೆ ಶೀಘ್ರದಲ್ಲೇ ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸುತ್ತದೆ. ಈ ಮಧ್ಯೆ, ನೀವು ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು ಮತ್ತು ಸ್ವಯಂ ಉದ್ಯೋಗದ ಅವಕಾಶಗಳ ಬಗ್ಗೆ ನಮ್ಮ ಸಂಪನ್ಮೂಲಗಳನ್ನು ಅನ್ವೇಷಿಸಬಹುದು ಅಥವಾ ತಕ್ಷಣದ ಬೆಂಬಲಕ್ಕಾಗಿ ನಮ್ಮ WhatsApp ಸಮುದಾಯವನ್ನು ಸೇರಿಕೊಳ್ಳಬಹುದು.";
+                    }
+                    
+                    botMessage.innerHTML = `<div class="message-content">${response}</div>`;
+                    messagesContainer.appendChild(botMessage);
+                    
+                    // Scroll to bottom
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 1000);
+            }
+        }
+        
+        // Allow pressing Enter to send message
+        document.getElementById('user-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        document.getElementById('user-input-kn').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
